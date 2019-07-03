@@ -1,0 +1,33 @@
+server:
+  port: 8002
+#数据源
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: springcloud-api
+mybatis-plus:
+  #扫描mapper
+  mapper-locations: classpath:/mapper/*.xml
+  #扫描实体包
+  typeAliasesPackage: com.cloud.entity
+  configuration:
+    #驼峰映射开启
+    mapmap-underscore-to-camel-case: true
+#日志打印
+logging:
+  level:
+    com.cloud: debug
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@127.0.0.1:8761/eureka/
+  instance:
+    instance-id: 127.0.0.1:8002
+    #每隔30s发送一次心跳
+    lease-renewal-interval-in-seconds: 30
+    #90s不心跳就剔除认为是挂了
+    lease-expiration-duration-in-seconds: 90

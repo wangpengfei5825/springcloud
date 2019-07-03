@@ -1,0 +1,23 @@
+server:
+  port: 8006
+spring:
+  application:
+    name: springcloud-zuul
+zuul:
+  routes:
+    springcloud-api:
+      #访问路径的配置
+      path: /springcloud-api/**
+      #服务id
+      serviceId: springcloud-api
+      #去除前缀
+      #strip-prefix: false
+  #忽略默认服务配置
+  ignored-services:
+    - springcloud-consumers
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@127.0.0.1:8761/eureka/

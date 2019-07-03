@@ -1,0 +1,28 @@
+server:
+  port: 8761
+eureka:
+  client:
+    #直接不注册自己
+    registerWithEureka: false
+    service-url:
+      #注册地址
+      defaultZone: http://127.0.0.1:8761/eureka/
+    #是否注册
+    register-with-eureka: false
+  instance:
+    #使用真实ip
+    prefer-ip-address: true
+    #自定义IP
+    ip-address: 127.0.0.1
+spring:
+  application:
+    name: springcloud-eureka
+
+  # 安全认证的配置
+
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: admin

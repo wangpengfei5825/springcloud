@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: springcloud-consumers
+eureka:
+  client:
+    security:
+      basic:
+        user: admin
+        password: admin
+    service-url:
+      defaultZone:  http://${eureka.client.security.basic.user}:${eureka.client.security.basic.password}@127.0.0.1:8761/eureka/
+#springcloud-api:
+#  ribbon:
+      #ribbon 轮询方式
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            #请求最长时间
+            timeoutInMilliseconds: 2000
+      circuitBreaker:
+        sleepWindowInMilliseconds: 10000
+        requestVolumeThreshold: 10
+        errorThresholdPercentage: 60
+feign:
+  hystrix:
+    enabled: true  #开启feign的熔断
+  compression:
+    request:
+      enabled: true  #开启请求压缩
+      mime-type:
+    response:
+      enabled: true   #开启响应压缩
